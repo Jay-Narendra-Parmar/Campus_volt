@@ -1,0 +1,24 @@
+{
+  "model_type": "RandomForestRegressor",
+  "target": "power",
+  "features": [
+  "hour",
+  "day",
+  "dayOfWeek",
+  "month",
+  "powerLag1",
+  "powerLag24",
+  "temperature",
+  "occupancyLevel"
+],
+    "metrics": {
+    "MAE": 4.71,
+    "RMSE": 6.97,
+    "R2": 0.916
+},
+    "prediction_unit": "kW",
+    "lag_features": {
+    "powerLag1": "Power value from 1 hour before",
+    "powerLag24": "Power value from 24 hours before"
+}
+}
