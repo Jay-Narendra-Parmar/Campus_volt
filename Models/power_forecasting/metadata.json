@@ -2,23 +2,21 @@
   "model_type": "RandomForestRegressor",
   "target": "power",
   "features": [
-  "hour",
-  "day",
-  "dayOfWeek",
-  "month",
-  "powerLag1",
-  "powerLag24",
-  "temperature",
-  "occupancyLevel"
-],
-    "metrics": {
-    "MAE": 4.71,
-    "RMSE": 6.97,
-    "R2": 0.916
-},
-    "prediction_unit": "kW",
-    "lag_features": {
-    "powerLag1": "Power value from 1 hour before",
-    "powerLag24": "Power value from 24 hours before"
-}
+    "hour",
+    "dayOfWeek",
+    "month",
+    "meterId",
+    "buildingId",
+    "temperature",
+    "occupancyLevel",
+    "weatherCondition",
+    "dayType",
+    "workingHours"
+  ],
+  "metrics": {
+    "MAE": 7.39,
+    "RMSE": 8.60,
+    "R2": 0.878
+  },
+  "prediction_unit": "kW"
 }
