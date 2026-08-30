@@ -1,0 +1,24 @@
+{
+  "model_type": "RandomForestRegressor",
+  "target": "peakPower",
+  "features": [
+    "meterId",
+    "buildingId",
+    "dayType",
+    "weatherCondition",
+    "avgTemperature",
+    "maxTemperature",
+    "avgOccupancy",
+    "maxOccupancy",
+    "sunnyHours",
+    "cloudyHours",
+    "rainyHours",
+    "stormyHours"
+  ],
+  "metrics": {
+    "MAE": 0,
+    "RMSE": 0,
+    "R2": 0
+  },
+  "prediction_unit": "kW"
+}

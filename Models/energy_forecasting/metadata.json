@@ -1,0 +1,19 @@
+{
+    "model_type": "RandomForestRegressor",
+    "prediction_target": "energyConsumption",
+    "prediction_unit": "kWh",
+    "r2_score": 0.982768,
+    "mae": 2.749964,
+    "rmse": 3.742053,
+    "features": [
+        "temperature",
+        "occupancyLevel",
+        "workingHours",
+        "hour",
+        "dayOfWeek",
+        "month",
+        "meterId",
+        "weatherCondition",
+        "dayType"
+    ]
+}
