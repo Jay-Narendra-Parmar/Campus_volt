@@ -78,13 +78,12 @@ class PowerPredictionInput(BaseModel):
 
 # Peak Power Prediction Input
 class PeakPowerPredictionInput(BaseModel):
-    #date: datetime
+    #date: date
     dayType: str
     dayOfWeek: int
     month: int
     meterId: str
     buildingId: str
-    weatherCondition: str
     avgTemperature: float
     maxTemperature: float
     avgOccupancy: float
@@ -278,22 +277,22 @@ def predict_power(data: PowerPredictionInput):
 @app.post("/predict/power/peak")
 def predict_peak_power(data: PeakPowerPredictionInput):
 
+    print(data)
     #selected_date = data.date
 
     #day_of_week = selected_date.weekday()
     #month = selected_date.month
 
     #day_type = get_day_type(day_of_week)
-    print("Hello Word ")
+    #print("Hello Word ")
     #print(data)
 
     model_input = pd.DataFrame([{
     "meterId": data.meterId,
     "buildingId": data.buildingId,
-    "dayOfWeek": data.dayOfWeek,
-    "month": data.month,
-    "dayType": data.dayType,
-    "weatherCondition": data.weatherCondition,
+    "dayOfWeek": 2,
+    "month": 8,
+    "dayType": "WeekDay",
     "avgTemperature": data.avgTemperature,
     "maxTemperature": data.maxTemperature,
     "avgOccupancy": data.avgOccupancy,

@@ -15,11 +15,11 @@ import { Badge } from "../ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 
 // ── API endpoints ──────────────────────────────────────────────────────────────
-const POWER_API_URL = "https://potter-helpful-approximately-covered.trycloudflare.com/predict/power";
+const POWER_API_URL = "https://ivory-curious-producing-ending.trycloudflare.com/predict/power";
 
-const PEAK_POWER_API_URL ="https://potter-helpful-approximately-covered.trycloudflare.com/predict/power/peak";
+const PEAK_POWER_API_URL ="http://localhost:8000/predict/power/peak";
 
-const ENERGY_API_URL = "https://potter-helpful-approximately-covered.trycloudflare.com/forecast/energy";
+const ENERGY_API_URL = "https://ivory-curious-producing-ending.trycloudflare.com/forecast/energy";
 
 // ── Shared constants ───────────────────────────────────────────────────────────
 const METER_IDS = ["M001", "M002", "M003", "M004", "M005"];
@@ -237,19 +237,26 @@ export function PowerForecasting() {
     setPeakResult(null);
     setPeakContext(null);
 
+    // Derive dayOfWeek, month, and dayType from the selected date
+    const selectedDate = new Date(peakForm.date);
+    const dayOfWeek = selectedDate.getDay(); // 0=Sun … 6=Sat
+    const month = selectedDate.getMonth() + 1; // 1-indexed
+    const dayType = dayOfWeek === 0 || dayOfWeek === 6 ? "Weekend" : "Weekday";
+
     const payload = {
-      date: `${peakForm.date}T00:00:00`,
+      dayOfWeek,
+      month,
+      dayType,
       meterId: peakForm.meterId,
       buildingId: peakForm.buildingId,
-      avgTemperature: parseFloat(peakForm.avgTemperature),
-      maxTemperature: parseFloat(peakForm.maxTemperature),
-      avgOccupancy: parseFloat(peakForm.avgOccupancy),
-      maxOccupancy: parseFloat(peakForm.maxOccupancy),
-      weatherCondition: peakForm.weatherCondition,
-      sunnyHours: parseFloat(peakForm.sunnyHours),
-      cloudyHours: parseFloat(peakForm.cloudyHours),
-      rainyHours: parseFloat(peakForm.rainyHours),
-      stormyHours: parseFloat(peakForm.stormyHours),
+      avgTemperature: Number(peakForm.avgTemperature) || 0,
+      maxTemperature: Number(peakForm.maxTemperature) || 0,
+      avgOccupancy: Number(peakForm.avgOccupancy) || 0,
+      maxOccupancy: Number(peakForm.maxOccupancy) || 0,
+      sunnyHours: Math.round(Number(peakForm.sunnyHours) || 0),
+      cloudyHours: Math.round(Number(peakForm.cloudyHours) || 0),
+      rainyHours: Math.round(Number(peakForm.rainyHours) || 0),
+      stormyHours: Math.round(Number(peakForm.stormyHours) || 0),
     };
 
     try {
